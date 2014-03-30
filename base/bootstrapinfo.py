@@ -74,8 +74,8 @@ class BootstrapInformation(object):
 		from datetime import datetime
 		now = datetime.now()
 		time_vars = ['%a', '%A', '%b', '%B', '%c', '%d', '%f', '%H',
-		             '%I', '%j', '%m', '%M', '%p', '%S', '%U', '%w',
-		             '%W', '%x', '%X', '%y', '%Y', '%z', '%Z']
+					 '%I', '%j', '%m', '%M', '%p', '%S', '%U', '%w',
+					 '%W', '%x', '%X', '%y', '%Y', '%z', '%Z']
 		for key in time_vars:
 			self.manifest_vars[key] = now.strftime(key)
 
@@ -91,6 +91,17 @@ class BootstrapInformation(object):
 		# should be called with.
 		self.include_packages = set()
 		self.exclude_packages = set()
+		
+		# Get the values from manifest (Mentioned above should only be used sparingly)
+		if 'include_pkgs' in self.manifest.system:
+			self.include_packages = self.include_packages.union(
+				set(self.manifest.system['include_pkgs'])
+				)
+
+		if 'exclude_pkgs' in self.manifest.system:
+			self.exclude_packages = self.exclude_packages.union(
+				set(self.manifest.system['exclude_pkgs'])
+				)
 
 		# Dictionary to specify which commands are required on the host.
 		# The keys are commands, while the values are either package names or urls
