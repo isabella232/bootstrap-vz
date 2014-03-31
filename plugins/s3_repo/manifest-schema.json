@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Install .deb immediately after debootstrap - allows usage of S3 repos later.",
+	"type": "object",
+	"properties": {
+		"plugins": {
+			"type": "object",
+			"properties": {
+			    "s3_repo": {
+				"type": "object",
+				"properties": {
+				    "paths": {
+					"type": "array",
+					"minItems": 1,
+					"items": {"type": "string"}
+				    }
+				},
+				"required": ["paths"]
+			    }
+			},
+		    "required": ["s3_repo"]
+		}
+	},
+    "required": ["plugins"]
+}

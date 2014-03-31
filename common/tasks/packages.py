@@ -46,9 +46,10 @@ class InstallPackages(Task):
 			env = os.environ.copy()
 			env['DEBIAN_FRONTEND'] = 'noninteractive'
 			log_check_call(['chroot', info.root,
-			                'apt-get', 'install',
-			                           '--no-install-recommends',
-			                           '--assume-yes']
+					'apt-get', 'install',
+					'--no-install-recommends',
+					'--allow-unauthenticated',
+					'--assume-yes']
 			               + map(str, remote_packages),
 			               env=env)
 		except CalledProcessError as e:
