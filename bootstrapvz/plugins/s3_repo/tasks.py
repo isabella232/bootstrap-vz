@@ -2,10 +2,10 @@ import os
 import os.path
 from shutil import copy
 
-from base import Task
-from common import phases
-from common.tasks import filesystem
-from common.tools import log_check_call
+from bootstrapvz.base import Task
+from bootstrapvz.common import phases
+from bootstrapvz.common.tasks import filesystem
+from bootstrapvz.common.tools import log_check_call
 
 class S3InstallPackage(Task):
 	description = 'Install a .deb package immediately after debootstrap'
