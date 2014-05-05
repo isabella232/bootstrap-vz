@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "copy_image plugin manifest",
+	"type": "object",
+	"properties": {
+		"plugins": {
+			"type": "object",
+			"properties": {
+				"copy_image": {
+					"type": "object",
+					"properties": {
+                        "regions": {
+                            "type": "array",
+                            "items": {
+						        "enum" : [ "us-east-1", "us-west-2", "us-west-1", "ap-southeast-1", "eu-west-1" ]
+					        },
+                            "minItems": 1
+                        }
+					},
+					"required": ["regions"]
+				}
+			},
+			"required": ["copy_image"]
+		}
+	},
+	"required": ["plugins"]
+}
