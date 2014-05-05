@@ -9,7 +9,7 @@
 			"properties": {
 				"description": {
 					"type": "string"
-				}
+				},
 				"tags": {
 					"type": "object",
 					"patternProperties": {
