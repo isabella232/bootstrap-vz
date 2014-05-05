@@ -22,6 +22,15 @@
 			"properties": {
 				"bucket": {
 					"type": "string"
+				},
+				"tags": {
+					"type": "object",
+					"patternProperties": {
+						"^[a-zA-Z0-9_-]+$": {
+							"type": "string"
+						}
+					},
+					"minItems": 1
 				}
 			},
 			"required": ["bucket"]

@@ -123,3 +123,14 @@ class RegisterAMI(Task):
 			                                                          info.manifest.system['architecture']])
 
 		info.image = info.connection.register_image(**registration_params)
+
+
+class CreateAMITags(Task):
+	description = 'Creating AMI tags'
+	phase = phases.image_registration
+	predecessors = [RegisterAMI]
+
+	@classmethod
+	def run(cls, info):
+		info.connection.create_tags(
+			[info.image], info.manifest.image["tags"])
