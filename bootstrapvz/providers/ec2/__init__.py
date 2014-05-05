@@ -83,6 +83,9 @@ def resolve_tasks(taskset, manifest):
 	if manifest.volume['partitions']['type'] != 'none':
 		taskset.add(initd.AdjustExpandRootScript)
 
+	if manifest.image.get("tags"):
+		taskset.add(tasks.ami.CreateAMITags)
+
 	if manifest.system['bootloader'] == 'pvgrub':
 		taskset.add(boot.AddGrubPackage)
 		taskset.add(tasks.boot.ConfigurePVGrub)

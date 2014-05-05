@@ -16,7 +16,11 @@
 		"name":        "debian-{system.release}-{system.architecture}-{virtualization}-{%y}{%m}{%d}",
 		"description": "Debian {system.release} {system.architecture} AMI",
 		"bucket":      "debian-amis",
-		"region":      "us-west-1"
+		"region":      "us-west-1",
+	        "tags": {
+		    "x": "abc",
+		    "y": "pqr"
+		}
 	},
 	"system": {
 		"release":      "wheezy",
