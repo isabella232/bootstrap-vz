@@ -23,12 +23,12 @@ class CopyEC2AMIOverRegion(Task):
 				region,
 				aws_access_key_id=info.credentials['access-key'],
 				aws_secret_access_key=info.credentials['secret-key'])
+                        t = conn.copy_image(
+                                info.host['region'], info.image,
+                                name=info.ami_name, description=copy_descpriton)
+
 			ami_list.append(
-				(region,
-				conn.copy_image(
-					info.host['region'], info.image,
-					name=info.ami_name, description=copy_descpriton))
-			)
+                                (region, t.image_id))
 		if info.manifest.plugins['copy_image']['block']:
 			state = False
 			while not state:
