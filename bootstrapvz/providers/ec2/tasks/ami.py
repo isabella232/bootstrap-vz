@@ -132,5 +132,5 @@ class CreateAMITags(Task):
 
 	@classmethod
 	def run(cls, info):
-		info.connection.create_tags(
-			[info.image], info.manifest.image["tags"])
+		info._ec2['connection'].create_tags(
+			[info._ec2['image']], info.manifest.image["tags"])
