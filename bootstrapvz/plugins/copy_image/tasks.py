@@ -12,9 +12,9 @@ class CopyEC2AMIOverRegion(Task):
 	@classmethod
 	def run(cls, info):
 		copy_descpriton = "Copied from %s (%s) %s" % (
-			info.image,
-			info.host['region'],
-			info.ami_name
+			info._ec2['image'],
+			info._ec2['region'],
+			info._ec2['ami_name']
 		)
 		from boto.ec2 import connect_to_region
 		ami_list = []
@@ -24,8 +24,8 @@ class CopyEC2AMIOverRegion(Task):
 				aws_access_key_id=info.credentials['access-key'],
 				aws_secret_access_key=info.credentials['secret-key'])
                         t = conn.copy_image(
-                                info.host['region'], info.image,
-                                name=info.ami_name, description=copy_descpriton)
+                                info._ec2['region'], info._ec2['image'],
+                                name=info._ec2['ami_name'], description=copy_descpriton)
 
 			ami_list.append(
                                 (region, t.image_id))
