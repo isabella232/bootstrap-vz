@@ -42,7 +42,10 @@ class BootstrapSaltMinion(Task):
 			'chroot', info.root, 'bash', 'install_salt.sh', '-X']
 
 		if 'master' in info.manifest.plugins['salt']:
-			bootstrap_command.extend(['-A', info.manifest.plugins['salt']['master']])
+			bootstrap_command.extend(['-A', info.manifest.plugins['salt']['master_fqdn']])
+
+                if info.manifest.plugins['salt'].get('install_master', None):
+                        bootstrap_command.extend(['-M'])
 
 		install_source = info.manifest.plugins['salt']['install_source']
 

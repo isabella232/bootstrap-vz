@@ -12,6 +12,7 @@
 						"master": {
 							"type": "string"
 						},
+					    "install_master": { "type": "boolean" },
                         "install_source": {
                             "type": "string"
                         },
