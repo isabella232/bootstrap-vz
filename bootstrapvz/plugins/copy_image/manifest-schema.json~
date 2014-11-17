@@ -12,13 +12,12 @@
                         "regions": {
                             "type": "array",
                             "items": {
-						        "enum" : [ "us-east-1", "us-west-2", "us-west-1", "ap-southeast-1", "ap-southeast-2", "eu-west-1" ]
+						        "enum" : [ "us-east-1", "us-west-2", "us-west-1", "ap-southeast-1", "eu-west-1" ]
 					        },
                             "minItems": 1
-                        },
-			"block": { "type": "boolean" }
+                        }
 					},
-					"required": ["regions", "block"]
+					"required": ["regions"]
 				}
 			},
 			"required": ["copy_image"]
