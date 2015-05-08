@@ -1,0 +1,21 @@
+---
+$schema: http://json-schema.org/draft-04/schema#
+properties:
+  plugins:
+    properties:
+      copy_image:
+        properties:
+          block: {type: boolean}
+          regions:
+            items:
+              enum: [us-east-1, us-west-2, us-west-1, ap-southeast-1, ap-southeast-2,
+                eu-west-1]
+            minItems: 1
+            type: array
+        required: [regions, block]
+        type: object
+    required: [copy_image]
+    type: object
+required: [plugins]
+title: copy_image plugin manifest
+type: object
