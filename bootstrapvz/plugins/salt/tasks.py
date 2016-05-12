@@ -39,7 +39,7 @@ class BootstrapSaltMinion(Task):
 			"disabled_debian_check_services")
 
 		bootstrap_command = [
-			'chroot', info.root, 'bash', 'install_salt.sh', '-X']
+			'chroot', info.root, 'bash', 'install_salt.sh', '-X', '-P']
 
 		if 'master' in info.manifest.plugins['salt']:
 			bootstrap_command.extend(['-A', info.manifest.plugins['salt']['master']])
