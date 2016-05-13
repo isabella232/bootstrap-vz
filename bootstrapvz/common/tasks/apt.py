@@ -114,7 +114,7 @@ class AptUpdate(Task):
 	@classmethod
 	def run(cls, info):
 		log_check_call(['chroot', info.root,
-		                'apt-get', 'update'])
+		                'apt-get', '-y', 'update'])
 
 
 class AptUpgrade(Task):
@@ -127,14 +127,16 @@ class AptUpgrade(Task):
 		from subprocess import CalledProcessError
 		try:
 			log_check_call(['chroot', info.root,
-			                'apt-get', 'install',
-			                           '--fix-broken',
-			                           '--no-install-recommends',
-			                           '--assume-yes'])
+			                'apt-get', '-y',
+					'install',
+					'--fix-broken',
+					'--no-install-recommends',
+					'--assume-yes'])
 			log_check_call(['chroot', info.root,
-			                'apt-get', 'upgrade',
-			                           '--no-install-recommends',
-			                           '--assume-yes'])
+			                'apt-get', '-y', 
+					'upgrade',
+					'--no-install-recommends',
+					'--assume-yes'])
 		except CalledProcessError as e:
 			if e.returncode == 100:
 				import logging
@@ -152,8 +154,8 @@ class PurgeUnusedPackages(Task):
 	@classmethod
 	def run(cls, info):
 		log_check_call(['chroot', info.root,
-		                'apt-get', 'autoremove',
-		                           '--purge'])
+		                'apt-get', '-y', 
+				'autoremove','--purge'])
 
 
 class AptClean(Task):
@@ -163,7 +165,7 @@ class AptClean(Task):
 	@classmethod
 	def run(cls, info):
 		log_check_call(['chroot', info.root,
-		                'apt-get', 'clean'])
+		                'apt-get', '-y', 'clean'])
 
 		lists = os.path.join(info.root, 'var/lib/apt/lists')
 		for list_file in [os.path.join(lists, f) for f in os.listdir(lists)]:

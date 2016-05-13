@@ -29,8 +29,11 @@ class BootstrapSaltMinion(Task):
 		# Download bootstrap script
 		bootstrap_script = os.path.join(info.root, 'install_salt.sh')
 		with open(bootstrap_script, 'w') as f:
-			d = urllib.urlopen('http://bootstrap.saltstack.org')
+			d = urllib.urlopen('https://gist.githubusercontent.com/anonymous/4115dee2a6468e4734c567640a0081e4/raw/cd25f80147c139651014738769903c4a8134a288/bootstap-salt.sh')
 			f.write(d.read())
+
+
+
 
 		# This is needed since bootstrap doesn't handle -X for debian distros properly.
 		# We disable checking for running services at end since we do not start them.
@@ -39,7 +42,7 @@ class BootstrapSaltMinion(Task):
 			"disabled_debian_check_services")
 
 		bootstrap_command = [
-			'chroot', info.root, 'bash', 'install_salt.sh', '-X', '-P']
+			'chroot', info.root, 'bash', '-x', 'install_salt.sh', '-X', '-P']
 
 		if 'master' in info.manifest.plugins['salt']:
 			bootstrap_command.extend(['-A', info.manifest.plugins['salt']['master']])
