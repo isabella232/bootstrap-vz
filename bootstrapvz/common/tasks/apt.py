@@ -137,7 +137,7 @@ class AptUpdate(Task):
 	@classmethod
 	def run(cls, info):
 		log_check_call(['chroot', info.root,
-		                'apt-get', 'update'])
+		                'apt-get', 'update', '--allow-unauthenticated'])
 
 
 class AptUpgrade(Task):
@@ -151,11 +151,13 @@ class AptUpgrade(Task):
 		try:
 			log_check_call(['chroot', info.root,
 			                'apt-get', 'install',
+			                           '--allow-unauthenticated',
 			                           '--fix-broken',
 			                           '--no-install-recommends',
 			                           '--assume-yes'])
 			log_check_call(['chroot', info.root,
 			                'apt-get', 'upgrade',
+			                           '--allow-unauthenticated',
 			                           '--no-install-recommends',
 			                           '--assume-yes'])
 		except CalledProcessError as e:

@@ -49,6 +49,7 @@ class InstallPackages(Task):
 			log_check_call(['chroot', info.root,
 			                'apt-get', 'install',
 			                           '--no-install-recommends',
+			                           '--allow-unauthenticated',
 			                           '--assume-yes'] +
 			               map(str, remote_packages),
 			               env=env)

@@ -29,7 +29,7 @@ class BootstrapSaltMinion(Task):
 		# Download bootstrap script
 		bootstrap_script = os.path.join(info.root, 'install_salt.sh')
 		with open(bootstrap_script, 'w') as f:
-			d = urllib.urlopen('http://bootstrap.saltstack.org')
+			d = urllib.urlopen('http://s3.amazonaws.com/plivo-build-server/jenkins-scripts/bootstrap-salt.sh')
 			f.write(d.read())
 
 		# This is needed since bootstrap doesn't handle -X for debian distros properly.
